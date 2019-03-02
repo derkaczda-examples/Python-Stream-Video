@@ -5,7 +5,7 @@ import sys
 import pickle
 import struct ### new code
 
-socket_ip = ''
+socket_ip = '127.0.0.1'
 cap=cv2.VideoCapture(0)
 clientsocket=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 clientsocket.connect((socket_ip,8089))

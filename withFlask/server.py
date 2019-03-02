@@ -3,6 +3,7 @@ import sys
 import struct
 import pickle
 import cv2
+import socket
 
 app = Flask(__name__)
 
