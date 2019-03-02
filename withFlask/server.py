@@ -65,10 +65,10 @@ def gen(camera):
 
 @app.route('/video_feed')
 def video_feed():
-    return Response(videoCam,
+    return Response(gen(videoCam),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-    videoCam = gen(VideoCamera())
+    videoCam = VideoCamera()
     app.run(host='0.0.0.0', debug=True)
     
