@@ -23,7 +23,7 @@ class VideoCamera(object):
         # self.video = cv2.VideoCapture('video.mp4')
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         print("socket created")
-        s.bind('0.0.0.0', 8089)
+        s.bind(('0.0.0.0', 8089))
         s.listen(10)
         conn, addr = s.accept()
         self.conn = conn
@@ -52,6 +52,7 @@ class VideoCamera(object):
 
         return jpeg.tobytes()
 
+videoCam = None
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -64,8 +65,9 @@ def gen(camera):
 
 @app.route('/video_feed')
 def video_feed():
-    return Response(gen(VideoCamera()),
+    return Response(videoCam,
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
+    videoCam = gen(VideoCamera())
