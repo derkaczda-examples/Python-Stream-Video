@@ -27,7 +27,7 @@ class VideoCamera(object):
         return jpeg.tobytes()
 
 from flask import Flask, render_template, Response
-from camera import VideoCamera
+#from camera import VideoCamera
 
 app = Flask(__name__)
 
